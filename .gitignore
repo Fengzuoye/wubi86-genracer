@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 运行时缓存（抓取到的文章/版面，含版权内容，不入库）
+data/cache/
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log

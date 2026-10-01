@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>86 五笔跟打器 · 人民日报</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>86 五笔跟打器</h1>
+      <span class="sub">材料：人民日报电子版 · 简码优先（主流输入法设置）</span>
+    </div>
+    <div class="fetch-ctl">
+      <label>日期 <input type="date" id="date-input"></label>
+      <button id="btn-fetch" class="primary">抓取当天文章</button>
+      <select id="article-sel" disabled></select>
+    </div>
+  </header>
+
+  <div id="status" class="status"></div>
+
+  <main>
+    <section class="card lesson" id="lesson-card" hidden>
+      <div class="meta" id="meta"></div>
+
+      <div class="opts">
+        <label>练习长度
+          <select id="len-sel">
+            <option value="200">200 字</option>
+            <option value="400">400 字</option>
+            <option value="800" selected>800 字</option>
+            <option value="1200">1200 字</option>
+            <option value="0">全文</option>
+          </select>
+        </label>
+        <label class="chk"><input type="checkbox" id="chk-jian" checked> 简码优先</label>
+        <label class="chk"><input type="checkbox" id="chk-code" checked> 显示码标注</label>
+        <button id="btn-restart">重新开始本段</button>
+        <button id="btn-ref">一/二级简码表</button>
+      </div>
+
+      <div class="text-view" id="text-view"></div>
+
+      <div class="kb-wrap">
+        <div class="kb-head">
+          <b>86 字根键盘</b>
+          <label class="chk"><input type="checkbox" id="chk-kb" checked> 显示键盘</label>
+          <label class="chk"><input type="checkbox" id="chk-hint" checked> 标出当前字码键</label>
+        </div>
+        <div id="kb-body">
+          <div class="kb" id="kb"></div>
+          <div class="kb-legend">
+            <span class="lg z1">一区 横 GFDSA</span>
+            <span class="lg z2">二区 竖 HJKLM</span>
+            <span class="lg z3">三区 撇 TREWQ</span>
+            <span class="lg z4">四区 点 YUIOP</span>
+            <span class="lg z5">五区 折 NBVCX</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <div class="typebox" id="typebox">
+          <div class="mirror" id="mirror" aria-hidden="true"></div>
+          <textarea id="type-input" rows="7" wrap="soft"
+                    autocomplete="off" autocorrect="off" autocapitalize="off"
+                    spellcheck="false"
+                    placeholder="把光标点进来，用本机五笔输入法在这里打字…"></textarea>
+        </div>
+        <div class="input-hint">下方框里：绿色 = 正确，红色 = 错字；可以按 Backspace 回退删除重打；标点也要打</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><label>用时</label><b id="st-time">00:00</b></div>
+        <div class="stat"><label>进度</label><b id="st-progress">0 / 0</b></div>
+        <div class="stat"><label>速度</label><b id="st-speed">0.0</b><small>字/分</small></div>
+        <div class="stat"><label>正确率</label><b id="st-acc">100%</b></div>
+        <div class="stat"><label>错字</label><b id="st-err">0</b></div>
+      </div>
+      <div id="done-banner" class="done-banner" hidden>恭喜完成本段 ✔</div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    标注按 86 版、简码优先：一简 1 键、二简 2 键、三简 3 键、其余全码，不足四位用 <code>_</code> 补齐；
+    数据源 <a href="http://paper.people.com.cn/" target="_blank" rel="noopener">paper.people.com.cn</a>，仅供个人练习。
+  </footer>
+
+  <div class="mask" id="ref-mask" hidden>
+    <div class="ref-panel">
+      <div class="ref-head">
+        <h2>86 版一/二级简码表</h2>
+        <div class="ref-ctl">
+          <input id="ref-search" placeholder="输入汉字或码（如：时 / jf）">
+          <button id="btn-close-ref">关闭</button>
+        </div>
+      </div>
+      <div id="ref-body" class="ref-body"><p class="loading">正在加载码表…</p></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
