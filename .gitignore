@@ -14,3 +14,7 @@ data/cache/
 .DS_Store
 Thumbs.db
 *.log
+
+# 本地推送辅助脚本（不随仓库分发）
+add-deploy-key*.bat
+push-*.bat
